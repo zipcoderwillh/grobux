@@ -1,4 +1,4 @@
-package com.example;
+package io.zipcoder;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
