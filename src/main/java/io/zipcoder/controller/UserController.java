@@ -1,13 +1,17 @@
 package io.zipcoder.controller;
 
 import javax.inject.Inject;
+
+import io.zipcoder.domain.CapitolCustomer;
 import io.zipcoder.domain.User;
+import io.zipcoder.exceptions.UserNameNotUniqueException;
 import io.zipcoder.repository.UserRepository;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
@@ -29,8 +33,9 @@ public class UserController {
 
     @RequestMapping(value="/users",method = RequestMethod.POST)
     public ResponseEntity<?> createUser(@RequestBody User user) {
+        validateUserName(user.getUserName());
+        validateCapitolOneID(user);
         user = userRepository.save(user);
-
         HttpHeaders responseHeaders = new HttpHeaders();
         URI newUserURI = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -40,5 +45,18 @@ public class UserController {
         responseHeaders.setLocation(newUserURI);
 
         return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
+    }
+
+    private void validateUserName(String username) throws UserNameNotUniqueException {
+        if (this.userRepository.findOne(username) != null)
+            throw new UserNameNotUniqueException(username);
+    }
+
+    public boolean validateCapitolOneID(User user) {
+        RestTemplate restTemplate = new RestTemplate();
+        CapitolCustomer cap = restTemplate.getForObject("http://api.reimaginebanking.com/enterprise/customers/"+user.getCapitolOneID()+"?key=ef86aaa631f2b147ce16f6ebe1648f67",CapitolCustomer.class);
+        user.setFirstName(cap.getFirst_name());
+        user.setLastName(cap.getLast_name());
+        return true;
     }
 }
