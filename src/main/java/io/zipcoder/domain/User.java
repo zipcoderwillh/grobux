@@ -11,6 +11,9 @@ import javax.persistence.*;
 public class User {
 
     @Id
+    @GeneratedValue
+    @Column(name="USER_ID")
+    private Long id;
     @Column(name="USERNAME", unique=true)
     private String userName;
     @Column(name="PASSWORD")
@@ -41,5 +44,5 @@ public class User {
     public String getLastName() {
         return lastName;
     }
-    
+
 }
