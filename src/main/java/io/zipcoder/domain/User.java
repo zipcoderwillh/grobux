@@ -14,9 +14,6 @@ import javax.validation.constraints.NotNull;
 public class User {
 
     @Id
-    @GeneratedValue
-    @Column(name="USER_ID")
-    private Long id;
     @Column(name="USERNAME", unique=true)
     private String userName;
     @NotNull
@@ -28,6 +25,7 @@ public class User {
     private String firstName;
     @Column(name="LASTNAME")
     private String lastName;
+
 
     public String getUserName() {
         return userName;
