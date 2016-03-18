@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
  */
 
 @Entity
-@Table(name = "users")
+@Table(name = "USERS")
 public class User {
 
     @Id
@@ -55,4 +55,7 @@ public class User {
         this.lastName = lastName;
     }
 
+    public User() {
+
+    }
 }
