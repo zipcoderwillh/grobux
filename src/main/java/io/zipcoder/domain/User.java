@@ -10,7 +10,7 @@ import javax.validation.constraints.NotNull;
  */
 
 @Entity
-@Table(name = "users")
+@Table(name = "USERS")
 public class User {
     @Id
     @Column(name="USERNAME", unique=true)
@@ -51,5 +51,9 @@ public class User {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public User() {
+
     }
 }
