@@ -1,6 +1,7 @@
 package io.zipcoder.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 /**
  * Created by johnb on 3/3/16.
  */
