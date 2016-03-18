@@ -15,10 +15,6 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
 
-/**
- * Created by willhorton on 3/2/16.
- */
-
 @RestController
 public class TripController {
 

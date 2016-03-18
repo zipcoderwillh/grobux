@@ -18,15 +18,9 @@ public class Trip {
     @Column(name="TRIP_NAME")
     private String name;
 
-    @OneToMany(cascade=CascadeType.ALL)
-    //@JoinColumn(name="TRIP_ID")
-    private Set<User> users;
-
-    /*
-    @OneToMany
-    @JoinColumn(name="TRIP_ID")
-    private Set<User> expenses;
-    */
+    @OneToOne
+    @JoinColumn(name="USER")
+    private User user;
 
     public Long getId() {
         return id;
@@ -44,21 +38,13 @@ public class Trip {
         this.name = name;
     }
 
-    public Set getUsers() {
-        return users;
-    }
-
-    public void setUsers(Set users) {
-        this.users = users;
-    }
-
     /*
-    public Set getExpenses() {
-        return expenses;
+    public User getUsers() {
+        return user;
     }
 
-    public void setExpenses(Set expenses) {
-        this.expenses = expenses;
+    public void setUsers(User users) {
+        this.user = users;
     }
     */
 
