@@ -1,5 +1,6 @@
 package io.zipcoder.domain;
 
+import javax.inject.Inject;
 import javax.persistence.*;
 import java.util.Set;
 
@@ -18,9 +19,8 @@ public class Trip {
     @Column(name="TRIP_NAME")
     private String name;
 
-    @OneToOne
-    @JoinColumn(name="USER")
-    private User user;
+    @ManyToMany(mappedBy="trips")
+    private Set<User> users;
 
     public Long getId() {
         return tripId;
@@ -38,13 +38,12 @@ public class Trip {
         this.name = name;
     }
 
-
-    public User getUser() {
-        return user;
+    public Set<User> getUser() {
+        return users;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUsers(Set<User> users) {
+        this.users = users;
     }
 
 }

@@ -2,6 +2,7 @@ package io.zipcoder.controller;
 
 import javax.inject.Inject;
 
+import io.zipcoder.repository.UserRepository;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

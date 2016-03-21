@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 /**
  * Created by johnb on 3/2/16.
@@ -26,6 +27,17 @@ public class User {
     @Column(name="LASTNAME")
     private String lastName;
 
+    @ManyToMany
+    @JoinTable(name="USER_TRIPS")
+    private Set<Trip> trips;
+
+    public Set<Trip> getTrips() {
+        return trips;
+    }
+
+    public void setTrips(Set<Trip> trips) {
+        this.trips = trips;
+    }
 
     public String getUserName() {
         return userName;
