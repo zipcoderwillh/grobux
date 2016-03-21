@@ -13,7 +13,7 @@ public class Trip {
     @Id
     @GeneratedValue
     @Column(name="TRIP_ID")
-    private Long id;
+    private Long tripId;
 
     @Column(name="TRIP_NAME")
     private String name;
@@ -23,11 +23,11 @@ public class Trip {
     private User user;
 
     public Long getId() {
-        return id;
+        return tripId;
     }
 
     public void setId(Long id) {
-        this.id = id;
+        this.tripId = id;
     }
 
     public String getName() {
@@ -38,14 +38,13 @@ public class Trip {
         this.name = name;
     }
 
-    /*
-    public User getUsers() {
+
+    public User getUser() {
         return user;
     }
 
-    public void setUsers(User users) {
-        this.user = users;
+    public void setUser(User user) {
+        this.user = user;
     }
-    */
 
 }
