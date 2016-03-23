@@ -1,5 +1,6 @@
 package io.zipcoder.domain;
 
+import com.fasterxml.jackson.annotation.*;
 import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
@@ -27,8 +28,7 @@ public class User {
     @Column(name="LASTNAME")
     private String lastName;
 
-    @ManyToMany
-    @JoinTable(name="USER_TRIPS")
+    @ManyToMany(mappedBy = "users")
     private Set<Trip> trips;
 
     public Set<Trip> getTrips() {

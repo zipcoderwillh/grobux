@@ -1,5 +1,7 @@
 package io.zipcoder.domain;
 
+import com.fasterxml.jackson.annotation.*;
+
 import javax.inject.Inject;
 import javax.persistence.*;
 import java.util.Set;
@@ -19,7 +21,8 @@ public class Trip {
     @Column(name="TRIP_NAME")
     private String name;
 
-    @ManyToMany(mappedBy="trips")
+    @ManyToMany
+    @JoinTable(name="user_trip", joinColumns = @JoinColumn(name="TRIP_ID"), inverseJoinColumns = @JoinColumn(name="USERNAME"))
     private Set<User> users;
 
     public Long getId() {
@@ -38,7 +41,7 @@ public class Trip {
         this.name = name;
     }
 
-    public Set<User> getUser() {
+    public Set<User> getUsers() {
         return users;
     }
 
