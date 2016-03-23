@@ -1,6 +1,8 @@
 package io.zipcoder.domain;
 
 import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import io.zipcoder.controller.TripsSerializer;
 import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
@@ -29,6 +31,7 @@ public class User {
     private String lastName;
 
     @ManyToMany(mappedBy = "users")
+    @JsonSerialize(using = TripsSerializer.class)
     private Set<Trip> trips;
 
     public Set<Trip> getTrips() {
