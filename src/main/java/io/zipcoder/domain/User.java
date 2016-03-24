@@ -1,9 +1,6 @@
 package io.zipcoder.domain;
 
-import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import io.zipcoder.controller.TripsSerializer;
-import org.springframework.context.annotation.Primary;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

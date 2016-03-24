@@ -1,4 +1,4 @@
-package io.zipcoder.controller;
+package io.zipcoder.domain;
 
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -19,9 +19,16 @@ public class TripsSerializer extends JsonSerializer<Set<Trip>> {
     public void serialize(Set<Trip> trips, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
 
         jgen.writeStartArray();
+
         for(Trip trip : trips) {
-            jgen.writeNumber(trip.getId());
+
+            jgen.writeStartObject();
+            jgen.writeNumberField("id", trip.getId());
+            jgen.writeStringField("name", trip.getName());
+            jgen.writeEndObject();
+
         }
+
         jgen.writeEndArray();
 
     }

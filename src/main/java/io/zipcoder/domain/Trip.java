@@ -1,10 +1,7 @@
 package io.zipcoder.domain;
 
-import com.fasterxml.jackson.annotation.*;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import io.zipcoder.controller.UsersSerializer;
 
-import javax.inject.Inject;
 import javax.persistence.*;
 import java.util.Set;
 
