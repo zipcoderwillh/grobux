@@ -39,7 +39,7 @@ public class TripController {
                 .toUri();
         responseHeaders.setLocation(newTripUri);
 
-        return new ResponseEntity<>(null, HttpStatus.CREATED);
+        return new ResponseEntity<>(null, responseHeaders, HttpStatus.CREATED);
 
     }
 
@@ -54,5 +54,5 @@ public class TripController {
         tripRepository.delete(tripId);
         return new ResponseEntity<>(HttpStatus.OK);
     }
-    
+
 }
