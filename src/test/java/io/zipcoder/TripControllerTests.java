@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockServletContext;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -30,7 +31,7 @@ import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standal
 @SpringApplicationConfiguration(classes = GrobuxApplication.class)
 @ContextConfiguration(classes = MockServletContext.class)
 @WebAppConfiguration
-public class GrobuxApplicationTests {
+public class TripControllerTests {
 
 	@InjectMocks
 	TripController tripController;
@@ -57,7 +58,7 @@ public class GrobuxApplicationTests {
 	public void testCreateTrip() throws Exception {
 		Trip added = new Trip();
 		when(tripRepository.save(added)).thenReturn(added);
-		mockMvc.perform(post("/trips")).andExpect(status().isCreated());
+		mockMvc.perform(post("/trips").contentType(MediaType.APPLICATION_JSON).content("{\"name\":\"Akron\",\"users\":[{\"userName\":\"benedictCumberbatch\"}]\"}")).andExpect(status().isCreated());
 	}
 
 }
