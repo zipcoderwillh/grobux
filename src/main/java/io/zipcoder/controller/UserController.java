@@ -9,10 +9,7 @@ import io.zipcoder.exceptions.invalidUserNameException;
 import io.zipcoder.exceptions.InvalidCapitalOneUserIDException;
 import io.zipcoder.repository.UserRepository;
 import org.springframework.http.*;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.net.URI;
@@ -29,7 +26,13 @@ public class UserController {
     @RequestMapping(value="/users",method = RequestMethod.GET)
     public ResponseEntity<Iterable<User>> getAllUsers() {
         Iterable<User> allUsers = userRepository.findAll();
-        return new ResponseEntity<>(userRepository.findAll(), HttpStatus.OK);
+        return new ResponseEntity<>(allUsers, HttpStatus.OK);
+    }
+
+    @RequestMapping(value="/users/{username}", method = RequestMethod.GET)
+    public ResponseEntity<?> getUser(@PathVariable String username) {
+        User user = userRepository.findOne(username);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
     @RequestMapping(value="/users",method = RequestMethod.POST)
