@@ -7,6 +7,10 @@ import org.scribe.model.Token;
 import org.scribe.model.Verb;
 import org.scribe.oauth.OAuthService;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class YelpAPI {
 
 
@@ -17,19 +21,19 @@ public class YelpAPI {
     private static final String SEARCH_PATH = "/v2/search";
     private static final String BUSINESS_PATH = "/v2/business";
 
-    /*
-     * Update OAuth credentials below from the Yelp Developers API site:
-     * http://www.yelp.com/developers/getting_started/api_access
-     */
-    private static final String CONSUMER_KEY = "WLr4DnSIZ7XqIwjbRP6ghw";
-    private static final String CONSUMER_SECRET = "MdWdN5uhmoqUNC1R9GJVL_jXHv0";
-    private static final String TOKEN = "ksTd_-GZGmS7sgDoovcQX24Cn4qGErae\n";
-    private static final String TOKEN_SECRET = "TYRet0b2zVzKXlQpOVDSS_eRMCw";
+    private static final String filePath = "src/main/resources/yelpKeys.txt";
+    private String consumerKey, consumerSecret, token, tokenSecret;
 
     OAuthService service;
     Token accessToken;
 
-    public YelpAPI(String consumerKey, String consumerSecret, String token, String tokenSecret) {
+    public YelpAPI() {
+        try {
+            readKeys();
+        }
+        catch (IOException e) {
+            System.out.println("Yelp Credentials not loaded");
+        }
         this.service =
                 new ServiceBuilder().provider(TwoStepOAuth.class).apiKey(consumerKey)
                         .apiSecret(consumerSecret).build();
@@ -51,5 +55,15 @@ public class YelpAPI {
         this.service.signRequest(this.accessToken, request);
         Response response = request.send();
         return response.getBody();
+    }
+
+    private void readKeys() throws IOException {
+        try (BufferedReader br =
+                     new BufferedReader(new FileReader(filePath))) {
+            consumerKey = br.readLine();
+            consumerSecret = br.readLine();
+            token = br.readLine();
+            tokenSecret = br.readLine();
+        }
     }
 }
