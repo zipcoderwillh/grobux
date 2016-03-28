@@ -27,9 +27,6 @@ public class DiningController {
         ObjectMapper objectMapper = new ObjectMapper();
         YelpAPI yelpAPI = new YelpAPI();
         YelpReturn yelpReturn = objectMapper.readValue(yelpAPI.searchForBusinessesByLocation("dinner", "San Francisco, CA"), YelpReturn.class);
-
         return new ResponseEntity<>(yelpReturn, HttpStatus.OK);
-
-
     }
 }
