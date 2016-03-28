@@ -25,6 +25,14 @@ public class Trip {
     @JsonSerialize(using = UsersSerializer.class)
     private Set<User> users;
 
+    public Trip() {};
+
+    public Trip(Long tripId, String name, Set<User> users) {
+        this.tripId = tripId;
+        this.name = name;
+        this.users = users;
+    }
+
     public Long getId() {
         return tripId;
     }
