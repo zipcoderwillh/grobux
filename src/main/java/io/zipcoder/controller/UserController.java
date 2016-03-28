@@ -1,17 +1,20 @@
 package io.zipcoder.controller;
 
-import javax.inject.Inject;
 import io.zipcoder.controller.errorHandlers.CapitolOneIDErrorHandler;
 import io.zipcoder.domain.CapitolCustomer;
 import io.zipcoder.domain.User;
+import io.zipcoder.exceptions.InvalidCapitalOneUserIDException;
 import io.zipcoder.exceptions.UserNameNotUniqueException;
 import io.zipcoder.exceptions.invalidUserNameException;
-import io.zipcoder.exceptions.InvalidCapitalOneUserIDException;
 import io.zipcoder.repository.UserRepository;
-import org.springframework.http.*;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import javax.inject.Inject;
 import java.net.URI;
 
 /**
