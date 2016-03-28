@@ -15,6 +15,7 @@ public class YelpBusinesses {
     private String rating_img_url;
     private String snippet_text;
     private String url;
+    private YelpLocation location;
 
     public String getSnippet_text(){
         return snippet_text;
@@ -49,5 +50,13 @@ public class YelpBusinesses {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public YelpLocation getLocation() {
+        return location;
+    }
+
+    public void setLocation(YelpLocation location) {
+        this.location = location;
     }
 }

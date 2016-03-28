@@ -11,7 +11,7 @@ public class YelpLocation {
     private String cross_streets;
     private String[] display_address;
     private double geo_accuracy;
-    private String[] neighborhodds;
+    private String[] neighborhoods;
     private long postal_code;
     private String state_code;
 
@@ -55,12 +55,12 @@ public class YelpLocation {
         this.geo_accuracy = geo_accuracy;
     }
 
-    public String[] getNeighborhodds() {
-        return neighborhodds;
+    public String[] getNeighborhoods() {
+        return neighborhoods;
     }
 
-    public void setNeighborhodds(String[] neighborhodds) {
-        this.neighborhodds = neighborhodds;
+    public void setNeighborhoods(String[] neighborhodds) {
+        this.neighborhoods = neighborhodds;
     }
 
     public long getPostal_code() {
