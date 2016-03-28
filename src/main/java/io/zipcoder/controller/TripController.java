@@ -1,6 +1,7 @@
 package io.zipcoder.controller;
 
 import io.zipcoder.domain.Trip;
+import io.zipcoder.exceptions.TripNotFoundException;
 import io.zipcoder.repository.TripRepository;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -26,6 +27,7 @@ public class TripController {
     @RequestMapping(value="/trips/{tripId}", method=RequestMethod.GET)
     public ResponseEntity<?> getSingleTrip(@PathVariable Long tripId) {
         Trip retrieved = tripRepository.findOne(tripId);
+        if(retrieved == null) throw new TripNotFoundException(tripId);
         return new ResponseEntity<>(retrieved, HttpStatus.OK);
     }
 

@@ -27,6 +27,7 @@ import static org.mockito.Matchers.any;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.setup.MockMvcBuilders.standaloneSetup;
 
@@ -67,6 +68,13 @@ public class TripControllerTests {
 		mockMvc.perform(get("/trips/5"))
 				.andExpect(status().isOk())
 				.andExpect(content().string("{\"name\":\"Boston\",\"users\":[],\"id\":5}"));
+	}
+
+	@Test
+	public void testInvalidTripIdThrowsException() throws Exception {
+		when(tripRepository.findOne(6L)).thenReturn(null);
+		mockMvc.perform(get("/trips/6"))
+				.andExpect(status().isNotFound());
 	}
 
 	@Test
