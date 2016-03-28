@@ -1,9 +1,10 @@
 package io.zipcoder.domain;
 
-import org.springframework.context.annotation.Primary;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Set;
 
 /**
  * Created by johnb on 3/2/16.
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "USERS")
 public class User {
+
     @Id
     @Column(name="USERNAME", unique=true)
     private String userName;
@@ -24,6 +26,18 @@ public class User {
     private String firstName;
     @Column(name="LASTNAME")
     private String lastName;
+
+    @ManyToMany(mappedBy = "users")
+    @JsonSerialize(using = TripsSerializer.class)
+    private Set<Trip> trips;
+
+    public Set<Trip> getTrips() {
+        return trips;
+    }
+
+    public void setTrips(Set<Trip> trips) {
+        this.trips = trips;
+    }
 
     public String getUserName() {
         return userName;
