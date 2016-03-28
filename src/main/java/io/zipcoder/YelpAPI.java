@@ -17,14 +17,6 @@ public class YelpAPI {
     private static final String SEARCH_PATH = "/v2/search";
     private static final String BUSINESS_PATH = "/v2/business";
 
-    /*
-     * Update OAuth credentials below from the Yelp Developers API site:
-     * http://www.yelp.com/developers/getting_started/api_access
-     */
-    private static final String CONSUMER_KEY = "WLr4DnSIZ7XqIwjbRP6ghw";
-    private static final String CONSUMER_SECRET = "MdWdN5uhmoqUNC1R9GJVL_jXHv0";
-    private static final String TOKEN = "ksTd_-GZGmS7sgDoovcQX24Cn4qGErae\n";
-    private static final String TOKEN_SECRET = "TYRet0b2zVzKXlQpOVDSS_eRMCw";
 
     OAuthService service;
     Token accessToken;
@@ -52,4 +44,6 @@ public class YelpAPI {
         Response response = request.send();
         return response.getBody();
     }
+    
 }
+

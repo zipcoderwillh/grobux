@@ -25,11 +25,9 @@ public class DiningController {
     @RequestMapping(value="dining/yelp", method = RequestMethod.GET)
     public ResponseEntity<YelpReturn> requestYelpDining() throws IOException{
         ObjectMapper objectMapper = new ObjectMapper();
-        YelpAPI yelpAPI = new YelpAPI("WLr4DnSIZ7XqIwjbRP6ghw","MdWdN5uhmoqUNC1R9GJVL_jXHv0","ksTd_-GZGmS7sgDoovcQX24Cn4qGErae","TYRet0b2zVzKXlQpOVDSS_eRMCw");
+        YelpAPI yelpAPI = new YelpAPI("WLr4DnSIZ7XqIwjbRP6ghw","MdWdN5uhmoqUNC1R9GJVL_jXHv0","wHXOolnU5mR2OCEiKL712wiGIv4QpKyt","S5e1yzPvMdIVHuTO1O1lHI_LNUQ");
         YelpReturn yelpReturn = objectMapper.readValue(yelpAPI.searchForBusinessesByLocation("dinner", "San Francisco, CA"), YelpReturn.class);
 
         return new ResponseEntity<>(yelpReturn, HttpStatus.OK);
-
-
     }
 }
