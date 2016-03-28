@@ -3,9 +3,7 @@ package io.zipcoder.domain;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-/**
- * Created by nicholaswebb on 3/18/16.
- */
+
 @Entity
 @Table(name = "SIGHTSEEING")
 public class Sightseeing {
@@ -13,7 +11,7 @@ public class Sightseeing {
     @Id
     @GeneratedValue
     @Column(name="SIGHTSEEING_ID", unique = true)
-    private Integer sightSeeingID;
+    private int sightSeeingID;
     @NotNull
     @Column(name="SIGHTSEEING_NAME")
     private String sightseeingName;
@@ -21,7 +19,7 @@ public class Sightseeing {
     @Column(name="SIGHTSEEING_PRICE")
     private double sightseeingPrice;
 
-    public Integer getSightSeeingID(){
+    public int getSightSeeingID(){
         return sightSeeingID;
     }
     public String getSightseeingName(){
