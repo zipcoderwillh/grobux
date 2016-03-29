@@ -9,6 +9,4 @@ import io.zipcoder.domain.Trip;
  */
 public interface TripRepository extends CrudRepository<Trip, Long> {
 
-
-
 }
